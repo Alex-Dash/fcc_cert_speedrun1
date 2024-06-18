@@ -23,10 +23,10 @@ app.get("/api/:date", function (req, res) {
   try {
     let dt_raw = req.params.date
     let dt = new Date()
-    if(new RegExp(/^\d+$/).test("12323")){
+    if(new RegExp(/^\d+$/).test(dt_raw)){
       dt = new Date(parseInt(dt_raw))
     } else {
-      dt = new Date(dt_raw)
+      dt = new Date(decodeURIComponent(dt_raw))
     }
     if(isNaN(dt.valueOf())){
       res.json({error: "Invalid Date"})
